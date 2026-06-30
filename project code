@@ -1,0 +1,57 @@
+import numpy as np
+
+# Student exam marks (5 students × 4 subjects)
+# Subjects: Math, Science, English, SST
+
+np.random.seed(42)
+
+marks = np.array([
+    [85, 92, 78, 88],   # Arjun
+    [76, 65, 90, 72],   # Priya
+    [95, 88, 85, 91],   # Ravi
+    [60, 72, 68, 75],   # Sneha
+    [88, 95, 92, 87],   # Vikram
+])
+
+names = np.array(["Arjun", "Priya", "Ravi", "Sneha", "Vikram"])
+subjects = ["Math", "Science", "English", "SST"]
+
+print("📋 Marks Data:")
+print(marks)
+
+# Insights using NumPy
+print("=" * 50)
+print("📊 STUDENT MARKS ANALYSIS")
+print("=" * 50)
+# 1. Total marks per student (sum along columns = axis 1)
+totals = np.sum(marks, axis=1)
+
+print("\nTotal marks per student:")
+for name, total in zip(names, totals):
+    print(f" {name:8} : {total}/400 ({total/4:.1f}%)")
+
+
+# 2. Average per subject (mean along rows = axis 0)
+subject_avg = np.mean(marks, axis=0)
+
+print("\nClass average per subject:")
+for sub, avg in zip(subjects, subject_avg):
+    print(f" {sub:8} : {avg:.1f}")
+
+
+# 3. Highest scorer
+top_idx = np.argmax(totals)
+
+print(f"\n🏆 TOP STUDENT: {names[top_idx]} with {totals[top_idx]}/400")
+
+
+# 4. Hardest subject (lowest average)
+hardest_idx = np.argmin(subject_avg)
+
+print(f"😕 HARDEST SUBJECT: {subjects[hardest_idx]} (avg {subject_avg[hardest_idx]:.1f})")
+
+
+# 5. Students above 80% overall
+percentages = total / 4
+above_80 = names[percentages > 80]
+print(f"\n Above 80% : {list(above_80)}")  this my projct give a this readme
